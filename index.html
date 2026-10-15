@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Authenticity Validator</title>
+  <style>
+    body {
+      background-color: #000000;
+      color: #ffffff;
+      font-family: monospace;
+      padding: 20px;
+      margin: 0;
+    }
+    a {
+      display: block;
+      margin-bottom: 8px;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    pre {
+      max-width: 800px;
+      color: #ffffff;
+      background-color: #111111;
+      padding: 15px;
+      border: 1px dashed #ffffff;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      line-height: 1.5;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+    .key-block {
+      user-select: all;
+    }
+    button {
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 20px;
+      font-family: monospace;
+      font-weight: bold;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    button:hover { background-color: #cccccc; }
+    #copy-status { display: none; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <a>You found the first puzzle.</a>
+  <a>We are collecting an individual to receive a prize of 75 USD.</a>
+  <a>All you need to do is to figure the puzzle out, and you walk away with money.</a>
+  <a>We will pay in Polygon cryptocurrency to preserve anonymity.</a>
+
+  <a>Occasionally, updates about the status of the puzzle completion will be here on this website,</a>
+  <a>or around physically. If there are others claiming to be us, we've implemented</a>
+  <a>strict measures so that you yourself are not tricked.</a>
+  <a>Every update will be digitally signed with PGP.</a>
+  <a>The PGP Key ID below identifies our announced public key. Ensure any file or segment has been signed and that the signature matches this key.</a>
+
+  <a>This is an example signed message:</a>
+  <pre>-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+This is an example signed segment.
+-----BEGIN PGP SIGNATURE-----
+
+iJEEARYKADkWIQTSvT+S+KwdjslfIE26xylrqB6ARgUCatFZNBsUgAAAAAAEAA5t
+YW51MiwyLjUrMS4xMiwyLDEACgkQuscpa6gegEabvAD8CT1eOZO1uNgs+I7mQTCe
+j9AzReSWIzOcXkcN0VyphrEBAK+DUVOPRwYTYQv1lacFIhwO1FuZE0ofx97Gznei
+WbYO
+=krE4
+-----END PGP SIGNATURE-----</pre>
+<a>Use this web site to verify the messages: https://browserpgp.github.io/verify.html</a>
+
+  <a>We will be kind enough to share the first clue without a signature. It is on the official website; it is valid.</a>
+  <a>Your first segment:</a>
+  <a>Epiphany will greet; only in source.</a>
+  <a>Epiphany is waiting, friend.</a>
+  <a>--END FIRST SEGMENT--</a>
+
+  <a>For authenticity checks, our public key is provided below. A public key can verify signatures; it cannot be used to create them.</a>
+  <a>Compare its full fingerprint with a trusted announcement before relying on it.</a>
+  <a>-----BEGIN PGP PUBLIC KEY BLOCK-----</a>
+  <pre class="key-block">-----BEGIN PGP PUBLIC KEY BLOCK-----
+
+mDMEatFSmBYJKwYBBAHaRw8BAQdA9belCjWjcFHd0WtST4hKY2NSVZKzYgtcoAkY
+qjJXgVW0CXB5cml0ZTAyMIi1BBMWCgBdFiEE0r0/kvisHY7JXyBNuscpa6gegEYF
+AmrRUpgbFIAAAAAABAAObWFudTIsMi41KzEuMTIsMiwxAhsDBQkHhcVoBQsJCAcC
+AiICBhUKCQgLAgQWAgMBAh4HAheAAAoJELrHKWuoHoBG/osBALUf6boQt6hCMzTZ
+RaMsYp3sbMOyaQr7WGUmXnUbq8DIAQCBd4rrswmdb6n7Az2ta61Htgd3Sp2hSWm/
+JzDEAiCuALg4BGrRUpgSCisGAQQBl1UBBQEBB0DsQYmHb1xLs1FClaWm8vFF4JH3
+wFgPty0PU0S3BOGAMgMBCAeImgQYFgoAQhYhBNK9P5L4rB2OyV8gTbrHKWuoHoBG
+BQJq0VKYGxSAAAAAAAQADm1hbnUyLDIuNSsxLjEyLDIsMQIbDAUJB4XFaAAKCRC6
+xylrqB6ARsOKAP4/aqwx9mOqj2MsMDLpYWSBUgx2nzhj5sGruq4Kh1QU5wD/Uxaf
+SrycRbYmFpgLIXlW47ipZBFrbAIxc1VgHHMHDAo=
+=JUVD
+-----END PGP PUBLIC KEY BLOCK-----
+</pre>
+  <a>-----END PGP PUBLIC KEY BLOCK-----</a>
+  <button type="button" id="copy-key">COPY PUBLIC KEY</button>
+  <div id="copy-status">The placeholder is not a real key. Replace it with your exported public key first.</div>
+
+  <script>
+    document.getElementById('copy-key').addEventListener('click', async () => {
+      const keyText = document.querySelector('.key-block').textContent.trim();
+      const status = document.getElementById('copy-status');
+      status.style.display = 'block';
+
+      if (keyText.startsWith('PUBLIC KEY NOT PROVIDED')) {
+        status.textContent = 'The placeholder is not a real key. Replace it with your exported public key first.';
+        return;
+      }
+
+      try {
+        await navigator.clipboard.writeText(keyText);
+        status.textContent = 'Public key copied.';
+      } catch (_) {
+        status.textContent = 'Clipboard access was blocked. Select the public-key text and copy it manually.';
+      }
+    });
+  </script>
+</body>
+</html>
