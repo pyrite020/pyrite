@@ -49,9 +49,11 @@
 </head>
 <body>
   <a>You found the first puzzle.</a>
-  <a>We are collecting an individual to receive a prize of 75 USD.</a>
-  <a>All you need to do is to figure the puzzle out, and you walk away with money.</a>
+  <a>The total amount of money you can gain from this is $100 US.</a>
+  <a>All you need to do is to figure the puzzles out, and for each puzzle solved, you walk away with a portion of money.</a>
   <a>We will pay in Polygon cryptocurrency to preserve anonymity.</a>
+  <a>Something to note; the only rule in this competition is you are NEVER under ANY CIRCUMSTANCE, allowed to SHARE CLUES. If it is discovered that you did, you will be disqualified.</a>
+  <a>You are permitted to talk about Pyrite; just not to such an extent.</a>
 
   <a>Occasionally, updates about the status of the puzzle completion will be here on this website,</a>
   <a>or around physically. If there are others claiming to be us, we've implemented</a>
@@ -72,7 +74,7 @@ j9AzReSWIzOcXkcN0VyphrEBAK+DUVOPRwYTYQv1lacFIhwO1FuZE0ofx97Gznei
 WbYO
 =krE4
 -----END PGP SIGNATURE-----</pre>
-<a>Use this web site to verify the messages: https://browserpgp.github.io/verify.html</a>
+<a>Use this web site to verify clues and messages: https://browserpgp.github.io/verify.html</a>
 
   <a>We will be kind enough to share the first clue without a signature. It is on the official website; it is valid.</a>
   <a>Your first segment:</a>
@@ -82,6 +84,7 @@ WbYO
 
   <a>For authenticity checks, our public key is provided below. A public key can verify signatures; it cannot be used to create them.</a>
   <a>Compare its full fingerprint with a trusted announcement before relying on it.</a>
+  <a>This is the OFFICIAl public key; not an example. The message above is for show, so you can know what to look for.</a>
   <a>-----BEGIN PGP PUBLIC KEY BLOCK-----</a>
   <pre class="key-block">-----BEGIN PGP PUBLIC KEY BLOCK-----
 
@@ -100,7 +103,7 @@ SrycRbYmFpgLIXlW47ipZBFrbAIxc1VgHHMHDAo=
 </pre>
   <a>-----END PGP PUBLIC KEY BLOCK-----</a>
   <button type="button" id="copy-key">COPY PUBLIC KEY</button>
-  <div id="copy-status">The placeholder is not a real key. Replace it with your exported public key first.</div>
+  <div id="copy-status">Click to copy the public key of Pyrite-020</div>
 
   <script>
     document.getElementById('copy-key').addEventListener('click', async () => {
@@ -108,10 +111,7 @@ SrycRbYmFpgLIXlW47ipZBFrbAIxc1VgHHMHDAo=
       const status = document.getElementById('copy-status');
       status.style.display = 'block';
 
-      if (keyText.startsWith('PUBLIC KEY NOT PROVIDED')) {
-        status.textContent = 'The placeholder is not a real key. Replace it with your exported public key first.';
-        return;
-      }
+
 
       try {
         await navigator.clipboard.writeText(keyText);
